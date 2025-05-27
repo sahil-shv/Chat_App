@@ -16,10 +16,16 @@ An IDE like IntelliJ, Eclipse, or VS Code (optional)
 Compile and Run
 
 Start the Server:
+  javac server/ChatServer.java
+  java server.ChatServer
 
 Run a Console Client:
+  javac client/ChatClient.java
+  java client.ChatClient
 
 Run a GUI Client:
+  javac client/ChatClientGUI.java
+  java client.ChatClientGUI
 
 🧪 Features
 Real-time chat among multiple clients
@@ -30,4 +36,4 @@ Timestamps for each message
 Ensure the server is running before connecting clients.
 All clients must connect to the same host and port.
 The server broadcasts every incoming message to all clients.
-You can now remove all MySQL and JDBC references from your documentation and codebase.
+
