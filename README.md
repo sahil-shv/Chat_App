@@ -1,3 +1,5 @@
+**Java Chat Application (Client-Server with GUI & Text File Storage)**
+
 📌 Overview
 This project is a basic client-server chat application in Java with a graphical user interface (GUI). It allows users to send and receive messages in real time, and stores all chat messages in a local file (messages.txt) for persistence.
 
