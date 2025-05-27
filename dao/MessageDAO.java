@@ -1,21 +1,21 @@
 package dao;
 
+import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import model.Message;
-import java.sql.*;
 
 public class MessageDAO {
-    private final String URL = "jdbc:mysql://localhost:3306/chatdb";
-    private final String USER = "root";
-    private final String PASSWORD = "your_password";
+    private final String FILE_PATH = "messages.txt";
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public void saveMessage(Message msg) {
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            String sql = "INSERT INTO messages (sender, content) VALUES (?, ?)";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, msg.getSender());
-            stmt.setString(2, msg.getContent());
-            stmt.executeUpdate();
-        } catch (SQLException e) {
+        String timestamp = LocalDateTime.now().format(formatter);
+        try (FileWriter fw = new FileWriter(FILE_PATH, true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+            out.println("[" + timestamp + "] " + msg.getSender() + ": " + msg.getContent());
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
